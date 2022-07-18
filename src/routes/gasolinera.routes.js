@@ -8,7 +8,7 @@ const md_roles = require('../middlewares/roles');
 var api = express.Router();
 
 //rutas
-api.get('/obtenerGasolineras',[md_autentificacion.Auth],gasolineraController.ObtenerGasolineras);
+api.get('/obtenerGasolineras',gasolineraController.ObtenerGasolineras);
 api.get('/obtenerGasolineraId/:idGas',[md_autentificacion.Auth],gasolineraController.ObtenerGasolineraId);
 api.post('/agregarGasolinera',[md_autentificacion.Auth, md_roles.verAdmin],gasolineraController.agregarGasolinera);
 api.put('/editarGasolinera/:idGas',[md_autentificacion.Auth, md_roles.verAdmin],gasolineraController.editarGasolinera);
