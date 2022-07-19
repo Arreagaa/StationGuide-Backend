@@ -8,7 +8,10 @@ const md_roles = require('../middlewares/roles');
 var api = express.Router();
 
 //rutas
-api.get('/obtenerSucursales',[md_autentificacion.Auth],sucursalController.ObtenerSucursales);
+api.get('/obtenerSucursales',sucursalController.ObtenerSucursales);
+api.get('/obtenerSuper',sucursalController.ObtenerSuper);
+api.get('/obtenerRegular',sucursalController.ObtenerRegular);
+api.get('/obtenerDiesel',sucursalController.ObtenerDiesel);
 api.get('/obtenerSucursalId/:idSucursal',[md_autentificacion.Auth],sucursalController.ObtenerSucursalId);
 api.post('/agregarSucursal',[md_autentificacion.Auth, md_roles.verAdmin],sucursalController.agregarSucursal);
 api.put('/editarSucursal/:idSucursal',[md_autentificacion.Auth, md_roles.verAdmin],sucursalController.editarSucursal);

@@ -5,7 +5,7 @@ const Gasolinera = require('../models/gasolinera.model');
 
 function ObtenerGasolineras (req, res) {
 
-    Gasolinera.find((err, gasolinerasObtenidas) => {
+    Gasolinera.find().sort({precioBase: +1 }).exec((err, gasolinerasObtenidas) => {
         
         if (err) return res.send({ mensaje: "Error: " + err })
 
@@ -84,5 +84,5 @@ module.exports = {
     agregarGasolinera,
     ObtenerGasolineraId,
     editarGasolinera,
-    eliminarGasolinera
+    eliminarGasolinera,
 }

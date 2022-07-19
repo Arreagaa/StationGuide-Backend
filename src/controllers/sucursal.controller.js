@@ -13,6 +13,36 @@ function ObtenerSucursales (req, res) {
     })
 }
 
+function ObtenerSuper (req, res) {
+
+    Sucursal.find().sort({super: +1 }).exec((err, gasolinerasObtenidas) => {
+        
+        if (err) return res.send({ mensaje: "Error: " + err })
+
+        return res.send({ sucursales: gasolinerasObtenidas })
+    })
+}
+
+function ObtenerRegular (req, res) {
+
+    Sucursal.find().sort({regular: +1 }).exec((err, gasolinerasObtenidas) => {
+        
+        if (err) return res.send({ mensaje: "Error: " + err })
+
+        return res.send({ sucursales: gasolinerasObtenidas })
+    })
+}
+
+function ObtenerDiesel (req, res) {
+
+    Sucursal.find().sort({diesel: +1 }).exec((err, gasolinerasObtenidas) => {
+        
+        if (err) return res.send({ mensaje: "Error: " + err })
+
+        return res.send({ sucursales: gasolinerasObtenidas })
+    })
+}
+
 function ObtenerSucursalId(req, res){
     var idSucursal = req.params.idSucursal;
 
@@ -86,5 +116,8 @@ module.exports = {
     agregarSucursal,
     ObtenerSucursalId,
     editarSucursal,
-    eliminarSucursal
+    eliminarSucursal,
+    ObtenerSuper,
+    ObtenerRegular,
+    ObtenerDiesel
 }
