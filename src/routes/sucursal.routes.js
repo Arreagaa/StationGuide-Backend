@@ -8,7 +8,7 @@ const md_roles = require('../middlewares/roles');
 var api = express.Router();
 
 //rutas
-api.get('/obtenerSucursales',sucursalController.ObtenerSucursales);
+api.get('/obtenerSucursales/:idGas?',sucursalController.ObtenerSucursales);
 api.get('/obtenerSuper',sucursalController.ObtenerSuper);
 api.get('/obtenerRegular',sucursalController.ObtenerRegular);
 api.get('/obtenerDiesel',sucursalController.ObtenerDiesel);

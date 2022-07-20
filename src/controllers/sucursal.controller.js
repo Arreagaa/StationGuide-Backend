@@ -4,13 +4,21 @@ const Sucursal = require('../models/sucursal.model');
 
 
 function ObtenerSucursales (req, res) {
+    var idGasolinera = req.params.idGas;
 
-    Sucursal.find((err, sucursalesObtenidas) => {
+    /*Sucursal.find((err, sucursalesObtenidas) => {
         
         if (err) return res.send({ mensaje: "Error: " + err })
 
         return res.send({ sucursales: sucursalesObtenidas })
-    })
+    })*/
+
+    Sucursal.find({idGasolinera: idGasolinera}, (err, sucursalesObtenidas)=>{
+        if(err) return res.status(500).send({ mensaje: "Error en la peticion"});
+        if(!sucursalesObtenidas) return res.status(404).send({mensaje : "Error, no se encuentran Sucursales en dicho Gasolinera."});
+
+        return res.status(200).send({sucursales: sucursalesObtenidas});
+    }).populate('idGasolinera')
 }
 
 function ObtenerSuper (req, res) {
