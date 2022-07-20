@@ -5,9 +5,10 @@ var sucursalSchema = Schema ({
     nombreSucursal: String,
     direccion: String,
     departamento: String,
-    super: Number,
+    SuperGas: Number,
     regular: Number,
     diesel: Number,
+    market: Boolean,
     idGasolinera:{type:Schema.Types.ObjectId, ref:'gasolineras'}
 });
 

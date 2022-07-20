@@ -6,13 +6,6 @@ const Sucursal = require('../models/sucursal.model');
 function ObtenerSucursales (req, res) {
     var idGasolinera = req.params.idGas;
 
-    /*Sucursal.find((err, sucursalesObtenidas) => {
-        
-        if (err) return res.send({ mensaje: "Error: " + err })
-
-        return res.send({ sucursales: sucursalesObtenidas })
-    })*/
-
     Sucursal.find({idGasolinera: idGasolinera}, (err, sucursalesObtenidas)=>{
         if(err) return res.status(500).send({ mensaje: "Error en la peticion"});
         if(!sucursalesObtenidas) return res.status(404).send({mensaje : "Error, no se encuentran Sucursales en dicho Gasolinera."});
@@ -23,7 +16,7 @@ function ObtenerSucursales (req, res) {
 
 function ObtenerSuper (req, res) {
 
-    Sucursal.find().sort({super: +1 }).exec((err, gasolinerasObtenidas) => {
+    Sucursal.find().sort({SuperGas: +1 }).exec((err, gasolinerasObtenidas) => {
         
         if (err) return res.send({ mensaje: "Error: " + err })
 
@@ -66,13 +59,14 @@ function agregarSucursal(req, res){
     var parametros = req.body;
     var sucursalModel = new Sucursal();
   
-    if(parametros.nombreSucursal, parametros.direccion, parametros.departamento, parametros.super, parametros.regular, parametros.diesel){
+    if(parametros.nombreSucursal, parametros.direccion, parametros.departamento, parametros.SuperGas, parametros.regular, parametros.diesel){
         sucursalModel.nombreSucursal = parametros.nombreSucursal;
         sucursalModel.direccion = parametros.direccion;
         sucursalModel.departamento = parametros.departamento;
-        sucursalModel.super = parametros.super;
+        sucursalModel.SuperGas = parametros.SuperGas;
         sucursalModel.regular = parametros.regular;
         sucursalModel.diesel = parametros.diesel;
+        sucursalModel.market = true;
         sucursalModel.idGasolinera = parametros.idGasolinera;
                 Sucursal.find({nombreSucursal: parametros.nombreSucursal}
                 ,(err, sucursalGuardada)=>{
