@@ -44,6 +44,18 @@ function ObtenerDiesel (req, res) {
     })
 }
 
+//OBTNER POR SUPERMARKET
+function ObtenerSuperMarket (req, res) {
+
+    Sucursal.find({market: true }).exec((err, marketEncontrado) => {
+        //console.log(marketEncontrado);
+        
+        if (err) return res.send({ mensaje: "Error: " + err })
+
+        return res.send({ sucursales: marketEncontrado })
+    })
+}
+
 function ObtenerSucursalId(req, res){
     var idSucursal = req.params.idSucursal;
 
@@ -112,7 +124,6 @@ function eliminarSucursal(req, res){
         })
 }
 
-
 module.exports = {
     ObtenerSucursales,
     agregarSucursal,
@@ -121,5 +132,6 @@ module.exports = {
     eliminarSucursal,
     ObtenerSuper,
     ObtenerRegular,
-    ObtenerDiesel
+    ObtenerDiesel,
+    ObtenerSuperMarket
 }

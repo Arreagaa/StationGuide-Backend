@@ -17,4 +17,6 @@ api.post('/agregarSucursal',[md_autentificacion.Auth, md_roles.verAdmin],sucursa
 api.put('/editarSucursal/:idSucursal',[md_autentificacion.Auth, md_roles.verAdmin],sucursalController.editarSucursal);
 api.delete('/eliminarSucursal/:idSucursal', [md_autentificacion.Auth, md_roles.verAdmin],sucursalController.eliminarSucursal);
 
+api.get('/ObtenerSuperMarket', sucursalController.ObtenerSuperMarket);
+
 module.exports = api;
